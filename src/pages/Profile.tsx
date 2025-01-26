@@ -30,10 +30,10 @@ function Profile() {
     <NavBar/>
     <div className="flex xl:flex-row lg:flex-row md:flex-row sm:flex-col sm:space-y-8 max-sm:flex-col max-sm:space-y-8 px-10 py-10 space-x-8">
         {/* Profile container */}
-        {!isLoading ? (user && <UserProfile user={user}/>) : <div className="w-[30%] bg-white"><div className="flex justify-center mt-40"><TailSpin stroke='#050a30' className='w-24 h-24'/></div></div>}
+        {!isLoading ? (user && <UserProfile user={user}/>) : <div className="xl:w-[30%] lg:w-[45%] md:w-[70%] sm:w-full max-sm:w-full bg-white rounded-xl shadow-xl border-gray-200 border-2 py-8 px-4"><div className="flex justify-center mt-40"><TailSpin stroke='#050a30' className='w-24 h-24'/></div></div>}
 
         {/* Activities container */}
-        {!isLoading ? (user && <UserActivities user={user}/>) : <div className="bg-blue-200 rounded-xl w-[70%] pt-10 border-gray-400"><div className="bg-blue-100 rounded-b-xl py-10 px-5 w-full"><div className="flex justify-center mt-40"><TailSpin stroke='#050a30' className='w-24 h-24'/></div></div></div>}
+        {!isLoading ? (user && <UserActivities user={user}/>) : <div className="bg-blue-200 rounded-xl xl:w-[70%] lg:w-[70%] md:w-[70%] sm:w-full max-sm:w-full pt-10 border-gray-400"><div className="bg-blue-100 rounded-b-xl py-10 px-5 w-full"><div className="flex justify-center mt-40"><TailSpin stroke='#050a30' className='w-24 h-24'/></div></div></div>}
         
     </div>
     </>

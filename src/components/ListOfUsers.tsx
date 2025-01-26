@@ -3,41 +3,20 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import default_pfp from '../assets/default_pfp.png'
 import toast from 'react-hot-toast'
-
-interface Company {
-    name: string,
-    catchPhrase: string,
-    bs: string
-}
-
-interface Address {
-    street: string,
-    suite: string,
-    city: string,
-    zipcode: string
-}
-
-interface User {
-    id: number,
-    name: string,
-    username: string,
-    email: string,
-    address: Address,
-    geo: object,
-    phone: string,
-    website: string,
-    company: Company
-}
+import { User } from '../interfaces/types'
+import TailSpin from 'react-loading-icons/dist/esm/components/tail-spin'
 
 function ListOfUsers() {
     const [allUsers, setAllUsers] = useState<User[]>([])
     const [searchedUsers, setSearchedUsers] = useState<User[]>([])
+    const [isLoading, setIsLoading] = useState<boolean>(true)
 
     //only fetch for user data when the array of all users decreases or increases in length
     useEffect(() => {
         axios.get(`/users`)
         .then(({data}) => {
             setAllUsers(data)
+            setIsLoading(false)
         })
         .catch(error => {
             console.log(error)
@@ -66,7 +45,8 @@ function ListOfUsers() {
         </div>
 
         {/* Users Container */}
-        <div className="grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 max-sm:grid-cols-1 space-x-3 space-y-6 px-4 py-6 mt-12">
+        {isLoading ? <div className='flex justify-center items-center mt-28'><TailSpin stroke='#050a30' className="w-24 h-24"/></div>:
+            <div className="grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 max-sm:grid-cols-1 space-x-3 space-y-6 px-4 py-6 mt-12">
             {(searchedUsers.length > 0 ? searchedUsers : allUsers).map((user) => (
                 <>
                 <Link to={`/profile/${user.username.toLowerCase()}`} className="flex space-x-10 bg-white border-gray-300 hover:border-blue-300 hover:shadow-xl border-2 shadow-blue-200 duration-300 hover:translate-y-[-10px] active:translate-y-1  p-2 rounded-xl cursor-pointer">
@@ -83,7 +63,8 @@ function ListOfUsers() {
                 </Link>
                 </>
             ))}
-        </div>
+            </div>
+        }
     </div>
     </>
   )
