@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import koach_logo from "../assets/Koach_logo.png"
 

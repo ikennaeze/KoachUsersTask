@@ -1,4 +1,3 @@
-import React from 'react'
 import { User } from '../interfaces/types'
 import default_pfp from '../assets/default_pfp.png'
 import location_icon from '../assets/location_icon.png'
