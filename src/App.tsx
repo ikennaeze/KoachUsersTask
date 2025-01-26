@@ -5,7 +5,7 @@ import Profile from './pages/Profile'
 import { Toaster } from 'react-hot-toast'
 
 function App() {
-  axios.defaults.baseURL = "http://jsonplaceholder.typicode.com"
+  axios.defaults.baseURL = "https://jsonplaceholder.typicode.com"
   axios.defaults.withCredentials = true
 
   const routes = (
